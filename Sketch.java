@@ -1,19 +1,20 @@
 import processing.core.PApplet;
+import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
+ /*
+  * A program that uses java processing to create a remote control
+  * @author: Austin L
+  */
+
+  // Sets the size of the window
   public void settings() {
-	// put your size call here
-    size(400, 400);
+    size(300, 300);
+
   }
 
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
+  /**
+   * Sets background to light green
    */
   public void setup() {
     background(210, 255, 173);
@@ -23,14 +24,23 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
+    // Converts width and height to float
+    float fltWidth = (float) (width);
+    float fltHeight = (float) (height);
 
+	  // Creates rectangle (remote control antenna)
     stroke(255);
-    line(50, 125, 70, 50);  
+    rect((fltWidth / 2.033898305f), (fltHeight / 2.666666667f), (fltWidth / 20f), (fltHeight / 3f));
+
+    // Creates rectangle (remote control)
+    stroke(255);
+    square((fltWidth / 3f), (fltHeight / 1.714285714f), fltWidth / 2.72727272727272727272727272f);
+    fill(0, 0, 0);
+
+    // Creates circle (remote control button)
+    stroke(255);
+    fill(255, 0, 0);
+    ellipse((fltWidth / 1.935483871f) , (fltHeight / 1.304347826f), (fltWidth / 4f), (fltHeight / 4f));
+
   }
-  
-  // define other methods down here.
 }
