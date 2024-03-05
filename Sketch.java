@@ -1,36 +1,63 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
+ /*
+  * A program that uses java processing to create a remote control which will randomly be placed on the screen as well as display the time
+  * @author: Austin L
+  */
+
+  // Sets the size of the window
   public void settings() {
-	// put your size call here
-    size(400, 400);
+    size(200, 200);
   }
 
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
+  // Sets the background color to green
   public void setup() {
-    background(210, 255, 173);
+    if(second() % 2 == 0) {
+      background(0,0,255);
+    } else if (second() % 2 != 0) {
+      background(0,255,0);
+    }
   }
 
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
-   */
+  // Position the control at a random location
+  float fltControlX = random(width - 30);
+  float fltControlY = random(height - 30);
+
+  // Position the antenna at the center top of the control
+  float fltAntennaX = fltControlX + 7.5f; // Position the antenna at the middle of the control
+  float fltAntennaY = fltControlY - 15; // Position the antenna just above the control
+
+  // Position the button in the middle of the control
+  float fltButtonX = fltControlX + 15;
+  float fltButtonY = fltControlY + 15;
+
   public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
+    setup();
 
+    // Fetches the time from the computer and stores it in a string
+    int intSec = second();
+    int intMin = minute();
+    int intHour = hour();
+    String strTime = str(intHour) + ":" + str(intMin) + ":" + str(intSec);
+
+    // Displays the time on the screen
+    fill(50);
+    textSize(32);
+    textAlign(CENTER, CENTER);  // Set the text alignment to center
+    text(strTime, width / 2, height / 2);
+
+    // Creates rectangle (remote control antenna)
     stroke(255);
-    line(50, 125, 70, 50);  
+    rect(fltAntennaX, fltAntennaY, 15, 15);
+
+    // Creates square (remote control)
+    stroke(255);
+    square(fltControlX, fltControlY, 30);
+
+    // Creates circle (remote control button)
+    stroke(255);
+    fill(255, 0, 0);
+    ellipse(fltButtonX, fltButtonY, 10, 10);
   }
-  
-  // define other methods down here.
 }
